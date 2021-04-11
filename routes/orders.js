@@ -1,6 +1,10 @@
 var express = require("express");
 
 var orders = express.Router();
+//the reviews in this order willl be added to the review array in the product array.
+//the rating of this ordered product should change the Avg rating value in the product array.
+//updatedRating=(prevrating*ratedTimes+UserRating)/(ratedTimes+1)
+//ratedTimes++
 var Userorderslist = [
   {
     userId: 1,
