@@ -13,6 +13,7 @@ var productsData = [
     sellerContact: "9841023456",
     stock: 100,
     rating: 5,
+    ratedCount:2
     reviews: [
       {
         reviewid: 1,
