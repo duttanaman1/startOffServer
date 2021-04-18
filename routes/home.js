@@ -15,6 +15,7 @@ home.get("/loginInfo/:userid", function (req, res, next) {
   res.send(login);
 });
 
+//instead of itemCatalog, I am using CF_temp
 home.get("/itemCatalog/:userid", function (req, res, next) {
   var userid = req.params.userid;
   var itemCatalog = [

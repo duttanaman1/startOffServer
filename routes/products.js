@@ -13,7 +13,7 @@ var productsData = [
     sellerContact: "9841023456",
     stock: 100,
     rating: 5,
-    ratedCount:2
+    //avgRating of product can be calculated from ratings given in the reviews
     reviews: [
       {
         reviewid: 1,
