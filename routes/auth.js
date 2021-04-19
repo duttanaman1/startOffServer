@@ -77,4 +77,13 @@ auth.post("/fillDetails", function (req, res, next) {
   console.log(lastName + ", " + firstName + ", " + pincode);
   res.send({ success: true, userid: userid });
 });
+
+auth.post("/filldetails2", function (req, res, next) {
+  var userid = req.body.userid;
+  var alrdsell = req.body.alrdsell;
+  var currrev = req.body.currrev;
+  var website = req.body.website;
+  res.send(true);
+});
+
 module.exports = auth;

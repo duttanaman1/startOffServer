@@ -5,7 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 const bodyParser = require("body-parser");
-const mongoose = require('mongoose');
+// const mongoose = require("mongoose");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -16,7 +16,9 @@ var cartRouter = require("./routes/cart");
 var productsRouter = require("./routes/products");
 var authRouter = require("./routes/auth");
 var tempRouter = require("./routes/temp");
-var temp2Router = require("./routes/temp2");
+var collaborativeFilteringRouter = require("./routes/collaborativeFiltering");
+var CF_tempRouter = require("./routes/CF_temp");
+var timeTemp1Router = require("./routes/timeTemp1");
 
 var app = express();
 
@@ -24,9 +26,8 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-mongoose.connect('mongodb://localhost/startup');
-mongoose.Promise = global.Promise;
-
+// mongoose.connect('mongodb://localhost/startup');
+//mongoose.Promise = global.Promise;
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -46,7 +47,9 @@ app.use("/cart", cartRouter);
 app.use("/products", productsRouter);
 app.use("/auth", authRouter);
 app.use("/temp", tempRouter);
-app.use("/temp2", temp2Router);
+app.use("/collaborativeFiltering", collaborativeFilteringRouter);
+app.use("/CF_temp", CF_tempRouter);
+app.use("/timeTemp1", timeTemp1Router);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
