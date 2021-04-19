@@ -13,12 +13,14 @@ var profileRouter = require("./routes/profile");
 var ordersRouter = require("./routes/orders");
 var homeRouter = require("./routes/home");
 var cartRouter = require("./routes/cart");
+var paymentRouter = require("./routes/payment");
 var productsRouter = require("./routes/products");
 var authRouter = require("./routes/auth");
 var tempRouter = require("./routes/temp");
 var collaborativeFilteringRouter = require("./routes/collaborativeFiltering");
 var CF_tempRouter = require("./routes/CF_temp");
 var timeTemp1Router = require("./routes/timeTemp1");
+var apriorTempRouter = require("./routes/apriorTemp");
 //client
 var inventoryRouter = require("./routes/inventory");
 var contactsRouter = require("./routes/contacts");
@@ -38,8 +40,13 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+
+//If you're using express > 4.16, you can use express.json() and express.urlencoded()
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -47,12 +54,14 @@ app.use("/profile", profileRouter);
 app.use("/orders", ordersRouter);
 app.use("/home", homeRouter);
 app.use("/cart", cartRouter);
+app.use("/payment", paymentRouter);
 app.use("/products", productsRouter);
 app.use("/auth", authRouter);
 app.use("/temp", tempRouter);
 app.use("/collaborativeFiltering", collaborativeFilteringRouter);
 app.use("/CF_temp", CF_tempRouter);
 app.use("/timeTemp1", timeTemp1Router);
+app.use("/apriorTemp", apriorTempRouter);
 
 //client
 app.use("/inventory", inventoryRouter);
