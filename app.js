@@ -19,6 +19,9 @@ var tempRouter = require("./routes/temp");
 var collaborativeFilteringRouter = require("./routes/collaborativeFiltering");
 var CF_tempRouter = require("./routes/CF_temp");
 var timeTemp1Router = require("./routes/timeTemp1");
+//client
+var inventoryRouter = require("./routes/inventory");
+var contactsRouter = require("./routes/contacts");
 
 var app = express();
 
@@ -50,6 +53,10 @@ app.use("/temp", tempRouter);
 app.use("/collaborativeFiltering", collaborativeFilteringRouter);
 app.use("/CF_temp", CF_tempRouter);
 app.use("/timeTemp1", timeTemp1Router);
+
+//client
+app.use("/inventory", inventoryRouter);
+app.use("/contacts", contactsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
