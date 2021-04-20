@@ -5,15 +5,15 @@ var Schema = mongoose.Schema;
 
 var ReviewSchema = new Schema({
     id: {
-        type: Integer,
+        type: Number,
         required: [true]
     },
     userid: {
-        type: Integer,
+        type: Number,
         required: [true]
     },
     productid: {
-        type: Integer,
+        type: Number,
         required: [true]
     },
     stars: {

@@ -1,37 +1,36 @@
 var mongoose = require("mongoose");
 
-
 var Schema = mongoose.Schema;
 
 var cartSchema = new Schema({
-    id: {
-        type: Integer,
-        required: [true]
-    },
-    userid: {
-        type: Integer,
-        required: [true]
-    },
-    productid: {
-        type: Integer,
-        required: [true]
-    },
-    productname: {
-        type: String,
-        required: [true]
-    },
-    img: {
-        data: Buffer,
-        contentType: String
-    },
-    quantity: {
-        type: Integer,
-        required: [true]
-    },
-    total: {
-        type: Integer,
-        required: [true]
-    },
+  id: {
+    type: Number,
+    required: [true],
+  },
+  userid: {
+    type: Number,
+    required: [true],
+  },
+  productid: {
+    type: Number,
+    required: [true],
+  },
+  productname: {
+    type: String,
+    required: [true],
+  },
+  img: {
+    data: Buffer,
+    contentType: String,
+  },
+  quantity: {
+    type: Number,
+    required: [true],
+  },
+  total: {
+    type: Number,
+    required: [true],
+  },
 });
 
 // Create model from the schema
