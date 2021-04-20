@@ -1,23 +1,23 @@
 var express = require("express");
 
 var profile = express.Router();
-const User = require('../models/User');
+const User = require("../models/User");
 
 profile.get("/userinfo/:userid", function (req, res, next) {
   var userid = req.params.userid;
   var userinfo = [
-    
-      var id = req.params.userid;,
-    var FirstName: req.params.firstName;,
-    var Username: req.params.username;,
-    var LastName: req.params.lastName;,
-    var Email: req.params.email;,
-    var Mobile: req.params.phone;,
-    var DoB: req.params.dob;,
-    var City: req.params.city;,
-    var Country: req.params.country;,
-    var PinCode: req.params.pincode;,
-    ,
+    {
+      id: req.params.userid,
+      FirstName: req.params.firstName,
+      Username: req.params.username,
+      LastName: req.params.lastName,
+      Email: req.params.email,
+      Mobile: req.params.phone,
+      DoB: req.params.dob,
+      City: req.params.city,
+      Country: req.params.country,
+      PinCode: req.params.pincode,
+    },
   ];
   res.send(
     userinfo.find((e) => {

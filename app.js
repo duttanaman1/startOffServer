@@ -5,7 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 const bodyParser = require("body-parser");
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -31,8 +31,8 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-// mongoose.connect('mongodb://localhost/startup');
-//mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/startup');
+mongoose.Promise = global.Promise;
 
 app.use(logger("dev"));
 app.use(express.json());
