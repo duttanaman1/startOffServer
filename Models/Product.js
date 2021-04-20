@@ -20,7 +20,7 @@ const productSchema = new Schema({
         type: Integer,
         required: [true]
     },
-    productname: {
+    description: {
         type: String,
         required: [true]
     },
@@ -35,8 +35,19 @@ const productSchema = new Schema({
     rate: {
         type: Integer,
         required: [true]
+    },
+    weight: {
+        type: Integer,
+        required: [true]
+    },
+    tag: [{ tag: String }],
+    promotions: {
+        type: Schema.Types.ObjectID,
+        ref:"Promotions"
+    }, Review: {
+        type: Schema.Types.ObjectID,
+        ref: "Review"
     }
-    tag: [{tag:String}]
     
 });
 

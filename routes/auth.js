@@ -2,29 +2,7 @@ var express = require("express");
 
 var auth = express.Router();
 
-var accountDetails = [
-  {
-    email: "user1@mail.com",
-    roles: "consumer",
-    userid: 1,
-    password: "user1@mail.com",
-    username: "user1@mail.com",
-  },
-  {
-    email: "user2@mail.com",
-    roles: "consumer",
-    userid: 2,
-    password: "user2@mail.com",
-    username: "user2@mail.com",
-  },
-  {
-    email: "user3@mail.com",
-    roles: "consumer",
-    userid: 3,
-    password: "user3@mail.com",
-    username: "user3@mail.com",
-  },
-];
+const User = require('../models/User');
 
 auth.post("/login", function (req, res, next) {
   var username = req.body.username;
@@ -77,4 +55,13 @@ auth.post("/fillDetails", function (req, res, next) {
   console.log(lastName + ", " + firstName + ", " + pincode);
   res.send({ success: true, userid: userid });
 });
+
+auth.post("/filldetails2", function (req, res, next) {
+  var userid = req.body.userid;
+  var alrdsell = req.body.alrdsell;
+  var currrev = req.body.currrev;
+  var website = req.body.website;
+  res.send(true);
+});
+
 module.exports = auth;

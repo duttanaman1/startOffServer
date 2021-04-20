@@ -3,18 +3,22 @@ const Schema = mongoose.Schema;
 var autoIncrement = require("mongodb-autoincrement");
 
 const userSchema = new Schema({
-    id: {
+    userid: {
         type: Integer,
         required: [true]
 
     },
-    fname: {
+    username: {
         type: String,
-        required: [true,'first name is required']
+        required: [true, 'first name is required']
     },
-    lname: {
+    firstName: {
         type: String,
-        required: [true,'last name is required']
+        required: [false,'first name is required']
+    },
+    lastName: {
+        type: String,
+        required: [false,'last name is required']
     },
     email: {
         type: String,
@@ -24,32 +28,32 @@ const userSchema = new Schema({
         type: String,
         required: [true,'password is required']
     },
-    Mobile: {
+    phone: {
         type: Integer,
-        required: [true, 'ph no is required'],
-        minLength: 10,
+        required: [false, 'ph no is required'],
+        minLength: 7,
         maxLength: 13
     },
-    DOB: {
+    dob: {
         type: Date,
-        required: [true,'Insert date of birth']
+        required: [false,'Insert date of birth']
     },
-    City: {
+    city: {
         type: String,
-        required: [true,'City is required']
+        required: [false,'City is required']
     },
-    Country: {
+    country: {
         type: String,
-        required: [true],
+        required: [false],
         default:'Nepal'
     },
     Pincode: {
         type: Integer,
-        required: [true, 'pincode is required'],
+        required: [false, 'pincode is required'],
         minLength: 5,
         maxLength: 10
     },
-    Category: {
+    roles: {
         type: String,
         required: [true],
         default: 'Consumer'

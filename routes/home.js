@@ -1,6 +1,8 @@
 var express = require("express");
 
 var home = express.Router();
+const User = require('../models/User');
+const Product = require('../models/Product');
 
 home.get("/loginInfo/:userid", function (req, res, next) {
   var userid = req.params.userid;

@@ -1,60 +1,74 @@
 var express = require("express");
 
 var profile = express.Router();
+const User = require('../models/User');
 
 profile.get("/userinfo/:userid", function (req, res, next) {
   var userid = req.params.userid;
-  var userinfo = {
-    id: "qwerty123",
-    FirstName: "Naman1",
-    Username: "duttanaman1999",
-    LastName: "Dutta",
-    Email: "duttanaman1999@gmail.com",
-    Mobile: "9843210478",
-    DoB: "17/11/1999",
-    City: "Kathmandu",
-    Country: "Nepal",
-    PinCode: "872335",
-  };
-  res.send(userinfo);
+  var userinfo = [
+    
+      var id = req.params.userid;,
+    var FirstName: req.params.firstName;,
+    var Username: req.params.username;,
+    var LastName: req.params.lastName;,
+    var Email: req.params.email;,
+    var Mobile: req.params.phone;,
+    var DoB: req.params.dob;,
+    var City: req.params.city;,
+    var Country: req.params.country;,
+    var PinCode: req.params.pincode;,
+    ,
+  ];
+  res.send(
+    userinfo.find((e) => {
+      e.id == userid;
+    })
+  );
 });
 profile.get("/address/:userid", function (req, res, next) {
   var userid = req.params.userid;
-  var sendingData = {
-    address: [
-      {
-        addressId: "1",
-        name: "Naman",
-        mob: "7339210265",
-        pincode: "872235",
-        locality: "Balaju",
-        address: "Balaju",
-        city: "Kathmanndu",
-        state: "Bagmati",
-        landmark: "Balaju Park",
-        mobAlt: "",
-        tag: "Home",
-        lat: "40",
-        lng: "27",
-      },
-      {
-        addressId: "2",
-        name: "Naman",
-        mob: "7339210265",
-        pincode: "872235",
-        locality: "Balaju",
-        address: "Balaju",
-        city: "Kathmanndu",
-        state: "Bagmati",
-        landmark: "Balaju Park",
-        mobAlt: "",
-        tag: "Home",
-        lat: "40",
-        lng: "27",
-      },
-    ],
-  };
-  res.send(sendingData);
+  var userAddress = [
+    {
+      userid: 1,
+      address: [
+        {
+          addressId: "1",
+          name: "Naman",
+          mob: "7339210265",
+          pincode: "872235",
+          locality: "Balaju",
+          address: "Balaju",
+          city: "Kathmanndu",
+          state: "Bagmati",
+          landmark: "Balaju Park",
+          mobAlt: "",
+          tag: "Home",
+          lat: "40",
+          lng: "27",
+        },
+        {
+          addressId: "2",
+          name: "Naman",
+          mob: "7339210265",
+          pincode: "872235",
+          locality: "Balaju",
+          address: "Balaju",
+          city: "Kathmanndu",
+          state: "Bagmati",
+          landmark: "Balaju Park",
+          mobAlt: "",
+          tag: "Home",
+          lat: "40",
+          lng: "27",
+        },
+      ],
+    },
+  ];
+  res.send(
+    userAddress.filter((e) => {
+      return e.userid == userid;
+    }).address
+  );
 });
 
 var reviews = [
