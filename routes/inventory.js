@@ -1,31 +1,7 @@
 var express = require("express");
 
 var inventory = express.Router();
-var Allproducts = [
-  {
-    userid: 1,
-    products: [
-      {
-        productid: 1,
-        productName: "product 1",
-        price: 100,
-        costPrice: 80,
-        stock: 100,
-        weight: 2,
-        pincode: 102456,
-      },
-      {
-        productid: 2,
-        productName: "product 2",
-        price: 200,
-        costPrice: 80,
-        stock: 100,
-        weight: 2,
-        pincode: 102456,
-      },
-    ],
-  },
-];
+const productModel = require("../Models/Product");
 
 inventory.post("/addProducts", function (req, res, next) {
   var userid = req.body.userid;
@@ -36,6 +12,8 @@ inventory.post("/addProducts", function (req, res, next) {
   var stock = req.body.stock;
   var pincode = req.body.pincode;
   var weight = req.body.weight;
+
+  let newProduct = new productModel({});
 
   res.send(true);
 });

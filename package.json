@@ -14,6 +14,9 @@
     "express": "^4.17.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "mongodb": "^3.6.6",
+    "mongodb-autoincrement": "^1.0.1",
+    "mongoose": "^5.12.5",
     "morgan": "~1.9.1",
     "node-apriori": "^1.0.0",
     "timeseries-analysis": "^1.0.12"

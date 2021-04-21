@@ -22,7 +22,7 @@ aprioriExecution.on("data", function (itemset) {
   //   );
 });
 
-apriorTemp.get("/trial", function (req, res, next) {
+aprior.get("/trial", function (req, res, next) {
   aprioriExecution.exec(dataset).then(function (result) {
     // Returns both the collection of frequent itemsets and execution time in millisecond.
     var frequentItemsets = result.itemsets;
@@ -47,14 +47,14 @@ apriorTemp.get("/trial", function (req, res, next) {
 
     //data to be obtained:
 
-  //   sendingData=[
-  //     [
-  //       {product with product id as resultObtained[0][0]}, {product with product id as resultObtained[0][1]}
-  //     ]
-  //     [
-  //        {product with product id as resultObtained[1][0]}, {product with product id as resultObtained[1][1]}
-  //     ]
-  //   ]
-  // });
+    //   sendingData=[
+    //     [
+    //       {product with product id as resultObtained[0][0]}, {product with product id as resultObtained[0][1]}
+    //     ]
+    //     [
+    //        {product with product id as resultObtained[1][0]}, {product with product id as resultObtained[1][1]}
+    //     ]
+    //   ]
+  });
 });
 module.exports = aprior;

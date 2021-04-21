@@ -7,6 +7,10 @@ const userSchema = new Schema({
     type: Number,
     required: [true],
   },
+  authentication: {
+    type: Schema.Types.ObjectID,
+    ref: "userAuthentication",
+  },
   username: {
     type: String,
     required: [true, "first name is required"],

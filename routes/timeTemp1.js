@@ -25,6 +25,11 @@ var ProfitDate = [
   [new Date(2021, 03, 25), 1500],
   [new Date(2021, 03, 26), 6000],
 ];
+// var temp = [];
+// for (var i = 0; i < ProfitDate.length; i++) {
+//   temp.push([String(ProfitDate[i][0]).substr(4, 11), ProfitDate[i][1]]);
+// }
+// console.log(temp);
 //date and no of goods sold of one seller
 var ProductSoldDate = [
   [new Date(2021, 03, 05), 1],
@@ -54,19 +59,17 @@ var ProductRateDate = [
   [new Date(2021, 03, 26), 3],
 ];
 
-timeTemp1.get("/trial/:value", function (req, res, next) {
+timeTemp1.get("/next/:value", function (req, res, next) {
   var userid = req.params.value;
   var t = new timeseries.main(ProfitDate);
   t.smoother({ period: 4 }).save("smoothed");
-  // var processed = t
-  //   .ma({
-  //     period: 5,
-  //   })
-  //   .lwma({
-  //     period: 2,
-  //   });
-  console.log(t.ma({ period: 5 }).output());
-  console.log(t.lwma({ period: 2 }).output());
+  var processed = t
+    .ma({
+      period: 5,
+    })
+    .lwma({
+      period: 2,
+    });
 
   var bestSettings = t.regression_forecast_optimize();
 
@@ -77,9 +80,39 @@ timeTemp1.get("/trial/:value", function (req, res, next) {
     degree: bestSettings.degree,
     method: bestSettings.method,
   });
-  console.log("--------------------------------");
-  console.log(t.output());
-  res.send(t.output());
+
+  var result = t.output();
+  var date = [];
+  var profits = [];
+
+  for (var i = 0; i < parseInt(result.length); i++) {
+    date.push(String(result[i][0]).substr(4, 11));
+    profits.push(result[i][1]);
+  }
+  var sendingData = {
+    date: date,
+    profits: profits,
+  };
+  console.log("next");
+  console.log(sendingData);
+  res.send(sendingData);
 });
 
+timeTemp1.get("/previous/:value", function (req, res, next) {
+  var userid = req.params.value;
+  var date = [];
+  var profits = [];
+
+  for (var i = 0; i < ProfitDate.length; i++) {
+    date.push(String(ProfitDate[i][0]).substr(4, 11));
+    profits.push(ProfitDate[i][1]);
+  }
+  var sendingData = {
+    date: date,
+    profits: profits,
+  };
+  console.log("previous");
+  console.log(sendingData);
+  res.send(sendingData);
+});
 module.exports = timeTemp1;

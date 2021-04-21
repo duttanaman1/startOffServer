@@ -1,6 +1,7 @@
 var express = require("express");
-
 var auth = express.Router();
+
+const userAuthModel = require("../Models/userAuthentication");
 
 var accountDetails = [
   {
@@ -26,13 +27,15 @@ var accountDetails = [
   },
 ];
 
-auth.post("/login", function (req, res, next) {
+auth.post("/login", async function (req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
   console.log("userName " + username + ", password " + password);
   var loginDetails = accountDetails.filter((account) => {
     return account.email == username || account.username == password;
   });
+
+  console.log(newUser);
   if (loginDetails.length > 0) {
     res.send({
       login: true,
@@ -43,25 +46,27 @@ auth.post("/login", function (req, res, next) {
       username: loginDetails[0].username,
       dateTime: new Date(),
     });
+    res.send(newUser);
   } else {
     res.send({ login: false });
   }
 });
-auth.post("/signUp", function (req, res, next) {
+auth.post("/signup", async function (req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
   var role = req.body.role;
   var email = req.body.email;
-  console.log(username + ", " + password + ", " + role + ", " + email);
-  res.send({
-    success: true,
-    token: "randomTokenGenerated-123",
-    userid: 2,
-    email: email,
-    roles: role,
+  let newUser = new userAuthModel({
+    userid: 1,
     username: username,
-    dateTime: new Date(),
+    email: email,
+    password: password,
+    roles: role,
   });
+  console.log(newUser);
+  newUser = await newUser.save();
+
+  res.send(newUser);
 });
 
 auth.post("/fillDetails", function (req, res, next) {
