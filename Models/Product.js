@@ -55,7 +55,7 @@ const productSchema = new Schema({
   Review: {
     type: Schema.Types.ObjectID,
     ref: "Review",
-  },
+  }
 });
 
 var Product = mongoose.model("Product", productSchema);
