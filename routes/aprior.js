@@ -2,6 +2,7 @@ var express = require("express");
 var apriori = require("node-apriori");
 
 var aprior = express.Router();
+const productModel = require("../Models/Product");
 
 var dataset = [
   [1, 3, 4],
@@ -22,7 +23,7 @@ aprioriExecution.on("data", function (itemset) {
   //   );
 });
 
-apriorTemp.get("/trial", function (req, res, next) {
+aprior.get("/trial", function (req, res, next) {
   aprioriExecution.exec(dataset).then(function (result) {
     // Returns both the collection of frequent itemsets and execution time in millisecond.
     var frequentItemsets = result.itemsets;
@@ -43,18 +44,45 @@ apriorTemp.get("/trial", function (req, res, next) {
     });
     console.log(resultObtained);
     //retrive data according to resultObtained
-    res.send(resultObtained);
+      res.send(resultObtained);
 
+      // test no to take from hash map => change to output from hash map
+      var no = 1;
     //data to be obtained:
+      aprior.post(no, async function (req, res, next) {
+          var userid = req.body.userid;
+          var name = req.body.productname;
+          var desp = req.body.desp;
+          var price = req.body.price;
+          var stock = req.body.stock;
+          var weight = req.body.weight;
+          var pid = req.body.productid;
 
-  //   sendingData=[
-  //     [
-  //       {product with product id as resultObtained[0][0]}, {product with product id as resultObtained[0][1]}
-  //     ]
-  //     [
-  //        {product with product id as resultObtained[1][0]}, {product with product id as resultObtained[1][1]}
-  //     ]
-  //   ]
-  // });
+          let featureProduct = new productModel({
+              userid: userid,
+              productid: 45102,
+              productname: name,
+              desp: desp,
+              price: price,
+              costprice: costprice,
+              stock: stock,
+              pincode: pincode,
+              weight: weight
+          });
+          console.log(featureProduct);
+          featureProduct = await featureProduct.save();
+
+          res.send(featureProduct);
+
+      })
+    //   sendingData=[
+    //     [
+    //       {product with product id as resultObtained[0][0]}, {product with product id as resultObtained[0][1]}
+    //     ]
+    //     [
+    //        {product with product id as resultObtained[1][0]}, {product with product id as resultObtained[1][1]}
+    //     ]
+    //   ]
+  });
 });
 module.exports = aprior;

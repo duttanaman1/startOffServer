@@ -1,22 +1,21 @@
 var express = require("express");
 
 var profile = express.Router();
-const User = require("../models/User");
 
 profile.get("/userinfo/:userid", function (req, res, next) {
   var userid = req.params.userid;
   var userinfo = [
     {
-      id: req.params.userid,
-      FirstName: req.params.firstName,
-      Username: req.params.username,
-      LastName: req.params.lastName,
-      Email: req.params.email,
-      Mobile: req.params.phone,
-      DoB: req.params.dob,
-      City: req.params.city,
-      Country: req.params.country,
-      PinCode: req.params.pincode,
+      id: "qwerty123",
+      FirstName: "Naman1",
+      Username: "duttanaman1999",
+      LastName: "Dutta",
+      Email: "duttanaman1999@gmail.com",
+      Mobile: "9843210478",
+      DoB: "17/11/1999",
+      City: "Kathmandu",
+      Country: "Nepal",
+      PinCode: "872335",
     },
   ];
   res.send(

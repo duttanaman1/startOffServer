@@ -4,7 +4,7 @@ var payment = express.Router();
 
 //create diffreent schema for transactions and different schema for itemsBoughtTogether.
 //Items Bought tgether data is used in aprior algorithm
-console.log("payment");
+
 payment.post("/checkout", express.json(), function (req, res, next) {
   var consumerid = req.body.userid;
   var products = req.body.product.j;
@@ -18,6 +18,7 @@ payment.post("/checkout", express.json(), function (req, res, next) {
     itemsBoughttogetherData.push(element.productid);
   });
   console.log(itemsBoughttogetherData);
+  res.send(itemsBoughttogetherData);
 });
 
 module.exports = payment;

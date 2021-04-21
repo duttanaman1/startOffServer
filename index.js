@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost/startup');
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
-app.use('/api', require('./routes/users')); //need to add all routes
+app.use('/api', require('./routes/try')); //need to add all routes
 
 app.listen(proocess.env.port || 4000, function () {
     console.log('listening...');

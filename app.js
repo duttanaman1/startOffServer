@@ -20,7 +20,7 @@ var tempRouter = require("./routes/temp");
 var collaborativeFilteringRouter = require("./routes/collaborativeFiltering");
 var CF_tempRouter = require("./routes/CF_temp");
 var timeTemp1Router = require("./routes/timeTemp1");
-var apriorTempRouter = require("./routes/apriorTemp");
+var apriorRouter = require("./routes/aprior");
 //client
 var inventoryRouter = require("./routes/inventory");
 var contactsRouter = require("./routes/contacts");
@@ -31,7 +31,11 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-mongoose.connect('mongodb://localhost/startup');
+mongoose.connect(
+  "mongodb://localhost/startup",
+  { useNewUrlParser: true },
+  { useUnifiedTopology: true }
+);
 mongoose.Promise = global.Promise;
 
 app.use(logger("dev"));
@@ -61,7 +65,7 @@ app.use("/temp", tempRouter);
 app.use("/collaborativeFiltering", collaborativeFilteringRouter);
 app.use("/CF_temp", CF_tempRouter);
 app.use("/timeTemp1", timeTemp1Router);
-app.use("/apriorTemp", apriorTempRouter);
+app.use("/aprior", apriorRouter);
 
 //client
 app.use("/inventory", inventoryRouter);

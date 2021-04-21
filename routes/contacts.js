@@ -1,7 +1,6 @@
 var express = require("express");
 
 var contacts = express.Router();
-const User = require('../models/User');
 
 contacts.get("/getContacts/:id", function (req, res, next) {
   var userid = req.params.id;

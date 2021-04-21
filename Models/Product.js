@@ -27,11 +27,19 @@ const productSchema = new Schema({
     data: Buffer,
     contentType: String,
   },
-  quantity: {
+  stock: {
+    type: Number,
+    required: [true],
+  },
+  price: {
     type: Number,
     required: [true],
   },
   rate: {
+    type: Number,
+    required: [true],
+  },
+  costprice: {
     type: Number,
     required: [true],
   },
