@@ -100,18 +100,78 @@ timeTemp1.get("/next/:value", function (req, res, next) {
 
 timeTemp1.get("/previous/:value", function (req, res, next) {
   var userid = req.params.value;
+  var tx = new timeseries.main(ProductSoldDate);
+  tx.smoother({ period: 4 }).save("smoothed");
+  var processed = tx
+    .ma({
+      period: 5,
+    })
+    .lwma({
+      period: 2,
+    });
+
+  var bestSettings = tx.regression_forecast_optimize();
+
+  // var coeff = t.ARMaxEntropy();
+  // console.log(coeff.length);
+  tx.sliding_regression_forecast({
+    sample: 3,
+    degree: 2,
+    method: "ARMaxEntropy",
+  });
+
+  var result = tx.output();
   var date = [];
   var profits = [];
 
-  for (var i = 0; i < ProfitDate.length; i++) {
-    date.push(String(ProfitDate[i][0]).substr(4, 11));
-    profits.push(ProfitDate[i][1]);
+  for (var i = 0; i < parseInt(result.length); i++) {
+    date.push(String(result[i][0]).substr(4, 11));
+    profits.push(result[i][1]);
   }
   var sendingData = {
     date: date,
     profits: profits,
   };
-  console.log("previous");
+  console.log("next");
+  console.log(sendingData);
+  res.send(sendingData);
+});
+
+timeTemp1.get("/rating/:value", function (req, res, next) {
+  var userid = req.params.value;
+  var tx = new timeseries.main(ProductRateDate);
+  tx.smoother({ period: 4 }).save("smoothed");
+  var processed = tx
+    .ma({
+      period: 5,
+    })
+    .lwma({
+      period: 2,
+    });
+
+  var bestSettings = tx.regression_forecast_optimize();
+
+  // var coeff = t.ARMaxEntropy();
+  // console.log(coeff.length);
+  tx.sliding_regression_forecast({
+    sample: 3,
+    degree: 2,
+    method: "ARMaxEntropy",
+  });
+
+  var result = tx.output();
+  var date = [];
+  var ratings = [];
+
+  for (var i = 0; i < parseInt(result.length); i++) {
+    date.push(String(result[i][0]).substr(4, 11));
+    ratings.push(result[i][1]);
+  }
+  var sendingData = {
+    date: date,
+    ratings: ratings,
+  };
+  console.log("ratings");
   console.log(sendingData);
   res.send(sendingData);
 });
