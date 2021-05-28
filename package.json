@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "alphavantage": "^2.2.0",
     "body-parser": "^1.19.0",
     "collaborative-filter": "^1.0.0-beta.3",
     "cookie-parser": "~1.4.4",
